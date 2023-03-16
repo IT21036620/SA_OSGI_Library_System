@@ -1,0 +1,6 @@
+1,p,k
+2,a,b
+3,Perera,2002.11.15,Sheron,Colombo,07745214215,2011201230125,sheron@gmail.com
+4,prathila,nikesh,2001201025,2001.10.11,prathila01@gmail.com,0774125415,colombo
+0,nikesh,nikesh,2001201021025,2001.12.25,nikesh@gmail.com,0774521452,colombo
+0,hvh,vrvr,4435434,545445,rvvrv,343542,rvrvrv

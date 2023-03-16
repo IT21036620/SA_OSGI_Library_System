@@ -3,8 +3,15 @@ package membermanagement;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
+
+
+
+import java.util.List;
 import java.util.Scanner;
+
+import memberpublisher.Member;
 import memberpublisher.MemberService;
+
 
 public class Activator implements BundleActivator {
 
@@ -17,6 +24,7 @@ public class Activator implements BundleActivator {
 		memberServiceReference = context.getServiceReference(MemberService.class.getName());
 		scan = new Scanner(System.in);
 		
+		@SuppressWarnings("unchecked")
 		MemberService memberPublisher = (MemberService) context.getService(memberServiceReference);
 		
 		while(true) {
@@ -25,7 +33,9 @@ public class Activator implements BundleActivator {
 			System.out.println("1. Insert a New Member");
 			System.out.println("2. Get All Memeber Details");
 			System.out.println("3. Search Member Details");
-			System.out.println("4. quit");
+			System.out.println("4. Update Member Details");
+			System.out.println("5. Delete Member");
+			System.out.println("6. quit");
 			choice = scan.nextInt();
 
 			
@@ -35,7 +45,11 @@ public class Activator implements BundleActivator {
 				   memberPublisher.insertMemberDetails();
 				   break;
 			   case 2:
-				   memberPublisher.getAllMemberDetails();
+				   List<Member> memberList = memberPublisher.getMemberAll();
+               	for (Member member : memberList) {
+               	System.out.println(member.getFirstName());
+               	}
+//				   memberPublisher.getAllMemberDetails();
 				   break;
 			   case 3:
 				   while(true) {
@@ -51,10 +65,22 @@ public class Activator implements BundleActivator {
 				   }
 				   }
 				   break;
-			   
 			   case 4:
+				   System.out.println("\nEnter the name of the Member you want to update");
+				   String nic = scan.nextLine();
+				   memberPublisher.editMemberDetails(nic);
+				   
+				   break;
+				   
+			   case 5:
+				   memberPublisher.deleteMember();
+				   break;
+				
+			   case 6:
+				   System.out.println("Exiting...");
 				   System.exit(0);
 				   break;
+				   
 			   default:
 				   continue;
 				   
